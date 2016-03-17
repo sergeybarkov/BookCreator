@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html lang="ru" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>ЦДМО ГУЗ. Электронное учебное пособие.</title>
+    <link href="../css/style.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="../js/jquery.js"></script>
+	<script type="text/javascript" src="../js/fancybox/jquery.fancybox.js?v=2.1.5"></script>
+	<link rel="stylesheet" type="text/css" href="../js/fancybox/jquery.fancybox.css?v=2.1.5" media="screen" />
+    <!--
+    Имущественные права принадлежат ФГБОУ ВПО "Государственный Университет по Землеустройству"
+    -->
+</head>
+<body>
+{content}
+<table style="width:100%;">
+<tr class="odd">
+<td style="width:50%; text-align: center;"><a href="{last_page}.html">к предыдущему разделу</a></td>
+<td style="width:50%; text-align: center;"><a href="{next_page}.html">к следующему разделу</a></td>
+</tr>
+</table>
+<div id="sm" style="display: none; position: absolute; top: 150px; z-index: 10000;"><img src="../img/arrow.png" /></div>
+<script type="text/javascript" src="../js/magicScroller.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $(window).scroll(showScrollMarker);
+        $('a.fancybox').fancybox({ type: 'ajax', width: '400px', height: 'auto', autoSize: false });
+    });
+</script>
+</body>
+</html>

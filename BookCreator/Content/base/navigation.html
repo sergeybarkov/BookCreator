@@ -1,0 +1,64 @@
+<html>
+<body style="margin: 0; padding: 0; margin-top: 0;">
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td><img src="img/navigation_left.png"></td>
+<td width="100%" background="img/navigation_center.png"></td>
+<td><img src="img/navigation_right.png"></td>
+</tr>
+</table>
+<div style="position:absolute; top:0; left:11;"><img title="Вернуться на предыдущую страницу" border=0 id="goBack" src="img/button_back.png"></div>
+<div style="position:absolute; top:0; left:105;"><img title="Перейти к следующей странице" border=0 id="goNext" src="img/button_next.png"></div>
+<div style="position:absolute; top:0; left:194;"><a href="content/content.html" target="content"><img title="Перейти к оглавлению" border=0 id="goHome" src="img/button_home.png"></a></div>
+<div style="position:absolute; top:0; left:284;"><img title="Скрыть|показать меню и заголовок" border=0 id="Hide" src="img/button_hide.png"></div>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript">
+$(function(){
+	var isMenuHidden = false;
+	var currentPage = 0;
+	$("#goBack").hover(function(){
+			$(this).attr("src","img/button_back_hl.png");
+		}, function(){
+			$(this).attr("src","img/button_back.png");
+		});	
+		$("#Other").hover(function(){
+			$(this).attr("src","img/button_other_hl.png");
+		}, function(){
+			$(this).attr("src","img/button_other.png");
+		});
+	$("#goNext").hover(function(){
+			$(this).attr("src","img/button_next_hl.png");
+		}, function(){
+			$(this).attr("src","img/button_next.png");
+		});	
+	$("#goHome").hover(function(){
+			$(this).attr("src","img/button_home_hl.png");
+		}, function(){
+			$(this).attr("src","img/button_home.png");
+		});					
+		$("#Hide").hover(function(){
+			$(this).attr("src","img/button_hide_hl.png");
+		}, function(){
+			$(this).attr("src","img/button_hide.png");
+		});
+		$("#Hide").click(function(){
+			if (!isMenuHidden){
+				$(parent.window.document.getElementById("mainFrameset")).attr("rows", "0,100%,38");
+				$(parent.window.document.getElementById("leftFrameset")).attr("cols", "0,*");
+				isMenuHidden = true;
+			}else{
+				$(parent.window.document.getElementById("mainFrameset")).attr("rows", "126,100%,38");
+				$(parent.window.document.getElementById("leftFrameset")).attr("cols", "214,*");			
+				isMenuHidden = false;
+				}
+		});
+		$("#goNext").click(function(){
+			history.forward();
+		});
+		$("#goBack").click(function(){
+			history.back();
+		});		
+});
+</script>
+</body>
+</html>

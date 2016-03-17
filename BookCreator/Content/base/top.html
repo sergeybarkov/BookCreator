@@ -1,0 +1,32 @@
+<html>
+<head>
+   <link href="css/style.css" type="text/css" rel="stylesheet"> 
+</head>
+<body style="margin: 0; padding: 0; margin-top: 0;">
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td><img src="img/top_left.png"></td>
+<td width="100%" background="img/top_center.png"></td>
+<td><a href="about.html" target="content"><img id="book" src="img/book.png" title="Об учебнике"></a></td>
+<td><img src="img/top_right2.png"></td>
+</tr>
+</table>
+<div style="position:absolute; top:0; left:0;"><a href="http://www.guz.ru/" target="_blank"><img title="На сайт ГУЗа" border=0 id="guz" src="img/guz.png"></a></div>
+<div style="position:absolute; top:10px; left:140px; z-index:1000;"><img src="img/guz_text.png"></div>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("#guz").hover(function(){
+			$(this).attr("src","img/guz_hl.png");
+		}, function(){
+			$(this).attr("src","img/guz.png");
+		});
+	$("#book").hover(function(){
+			$(this).attr("src","img/book_hl.png");
+		}, function(){
+			$(this).attr("src","img/book.png");
+		});
+});
+</script>
+</body>
+</html>

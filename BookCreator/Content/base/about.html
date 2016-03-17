@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html lang="ru" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>ЦДМО ГУЗ. Электронное учебное пособие.</title>
+    <link href="css/style.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/fancybox/jquery.fancybox.js?v=2.1.5"></script>
+	<link rel="stylesheet" type="text/css" href="js/fancybox/jquery.fancybox.css?v=2.1.5" media="screen" />
+    <!--
+    Имущественные права принадлежат ФГБОУ ВПО "Государственный Университет по Землеустройству"
+    -->
+</head>
+<body>
+<table border="0" align="center" width="100%">
+<tr>
+<td align="center">
+<a class="fancybox" href="#aboutBook"><img src="img/about_books.png" align="center"></a></td><td align="center">
+<a class="fancybox" href="#aboutAuthor"><img src="img/author.png" align="center"></a></td>
+</tr>
+<td align="center"><a class="fancybox" href="#aboutBook">сведения об учебнике</a></td><td align="center"><a class="fancybox" href="#aboutAuthor">
+сведения об авторах</a></td>
+</tr>
+</table>
+
+<div style="display:none;width:600px;" align="center" id="aboutBook">
+Министерство сельского хозяйства Российской Федерации<br />
+Федеральное государственное бюджетное образовательное учреждение<br />высшего профессионального образования<br />
+Государственный Университет по Землеустройству<br />
+<br />
+ФИО автора<br />
+<b>Название учебника</b><br />
+<b><i>Электронное издание</i></b><br />
+ISBN: 978-5-xxxx-xxxx-x<br />
+</div>
+<div style="display:none;width:600px;" id="aboutAuthor">
+    Что-нибудь хорошее об авторе
+</div>
+<script>
+    $(function () {
+        $(".fancybox").fancybox();
+    });
+</script>
+</body>
+</html>

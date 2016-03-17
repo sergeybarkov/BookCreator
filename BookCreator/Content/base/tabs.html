@@ -1,0 +1,48 @@
+<html>
+<head>
+<base TARGET=content>
+<link rel="stylesheet" href="theme/theme.css" type="text/css">
+<link rel="stylesheet" href="theme/theme.css" type="text/css">
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="theme/JSCookTree.js"></script>
+<script type="text/javascript" src="theme/theme.js"></script>
+</head>
+
+<body style="margin: 0; padding: 0; margin-top: 0px;" background="img/bg.png">
+<div id="Menu" class="Menu" style="background-color:transparent;position:absolute;top:35;left:30;height:100%;width:170;overflow: auto;z-index:1000;" onMouseDown="return false" onSelectStart="return false"></div>
+	<table border="0" cellspacing="0" cellpadding="0" height="100%" width="214" id="menu_table" align="center">
+		<!--<tr><td><img id="nav" src="img/tab_nav_hl.png"><img id="gloss" src="img/tab_gloss.png"></td></tr>-->
+		<tr><td><img src="img/tabs_top.png"></td></tr>
+		<tr><td height="100%" background="img/tabs_center.png"></td></tr>
+		<tr><td><img src="img/tabs_bottom.png"></td></tr>
+	</table>
+<script type="text/javascript">
+<!--
+//var currentMenuItem = 0;
+    var menu = [ {jsonindex}
+    ], [null,'Глоссарий','gloss/index.html',null,'']
+    ];
+
+var navMenuIndex = ctDraw ('Menu', menu, ctThemeLibrary, 'ThemeLibrary', 0, 0);
+var currentTree = navMenuIndex;
+$(function(){
+	//$("#Glossary").hide();
+	$("#Menu").css("height", $("#menu_table").height()-53);
+	$("#gloss").click(function(){ //показываем глоссарий
+		$("#nav").attr("src", "img/tab_nav.png");
+		$("#gloss").attr("src", "img/tab_gloss_hl.png");		
+		$("#Menu").hide();
+		$("#Glossary").show();	
+		currentTree	= glossMenuIndex;
+	});
+	$("#nav").click(function(){ //показываем навигацию
+		$("#nav").attr("src", "img/tab_nav_hl.png");
+		$("#gloss").attr("src", "img/tab_gloss.png");		
+		$("#Menu").show();
+		$("#Glossary").hide();
+		currentTree	= navMenuIndex;		
+	});	
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+.even  {
+      background-color: #d1ff9f;
+	  border: 1px solid #9d5820;
+    }
+.odd  {
+      background-color: #fffb83;
+      border: 1px solid #9d5820;
+    }
+.table_head{
+    background-color: #ff9945;
+    border: 1px solid #9d5820;
+}
+.table_head td{
+    font-weight: bold;
+}
+.cdml_table th {
+      background-color: #ff9945;
+      border: 1px solid #9d5820;
+      font-weight: bold;
+}
+table.cdml_table th p {
+      font-weight: bold;
+}
+
+table.cdml_table  {
+	border-style: solid;
+        border-collapse: collapse;
+	border-color: #9d5820;
+        border-width: 3px;
+        margin: 0 auto;
+}
+table.cdml_table  th, table.cdml_table td  {
+	border: 1px solid #9d5820;
+}
+
+.cdml_table p{
+	font-size: 12pt;
+	font-family : TimesNewRoman;
+	margin-top: 0;
+	margin-bottom: 0;
+	margin-left: 0;
+	margin-right: 0;
+	text-align: left;
+	text-indent: 0px;
+}
+
+body{
+    overflow-x: hidden;
+}
+
+a:link,
+a:visited,
+a:active{
+	background: transparent;
+	color: #9d0000;
+	text-decoration: none;
+}
+a:hover{
+	background: transparent;
+	color: #002dd5;
+}
+
+p{
+	font-size: 12pt;
+	font-family : TimesNewRoman !important;
+	margin-top: 0 !important;
+	margin-bottom: 15px !important;
+	margin-left: 5px !important;
+	margin-right: 5px !important;
+	text-align: justify;
+	text-indent: 25px;
+}
+img{
+	border: 0;
+}
+
+ul{
+    padding-left: 30px !important;
+}
+
+li, ul{
+	text-align: justify ;	
+}
+
+
+
+.cdml_ch{
+	font-weight: bold !important;
+	color: #84360b !important;
+	text-align: left !important;
+}
+
+.cdml_pr{
+	font-weight: bold !important;
+	font-style: italic !important;
+	color: green !important;
+	text-align: left !important;	
+}
+
+.cdml_image{
+	text-align: center !important;
+}
+
+.cdml_ppr{
+	font-weight: bold !important;
+	font-style: italic !important;	
+	text-align: left !important;	
+}
+
+.cdml_wordHl{
+	font-weight: bold !important;
+}
+
+.cdml_img_label{
+	text-align: center;
+	font-style: italic;	
+}
