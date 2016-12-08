@@ -12,19 +12,30 @@ using System.Text.RegularExpressions;
 
 namespace BookCreator
 {
+    public class bc_gloss
+    {
+        public string text;
+        public string name;
+    }
+
+    public class bc_chapters
+    {
+        public string text;
+        public string name;
+    }
+
+
     public class BookBuilder
     {
 
         Dictionary<string, string> content = new Dictionary<string, string>();
 
-        private book_creatorEntities context;
         private string outputdir;
         private string inputdir;
         private bool wordmode;
 
         public BookBuilder(string outputdir, string inputdir)
         {
-            this.context = new book_creatorEntities();
             this.outputdir = outputdir;
             this.inputdir = inputdir;
             this.wordmode = !String.IsNullOrEmpty(inputdir);
@@ -49,12 +60,6 @@ namespace BookCreator
 
             List<bc_gloss> glossary = new List<bc_gloss>();
 
-            if (!wordmode)
-            {
-                glossary = (from c in context.bc_gloss select c).ToList();
-            }
-            else
-            {
                 var glosstxt = File.ReadAllText(inputdir + "/gloss.txt");
 
                 var glossarray = glosstxt.Split('@');
@@ -85,7 +90,7 @@ namespace BookCreator
                 glossary = glossary.OrderBy(c => c.name).ToList();
 
 
-            }
+            
 
 
             var glossDir = String.Format("{0}/gloss" ,outputdir);
@@ -103,7 +108,13 @@ namespace BookCreator
 
                 ru_morpher_api.GetXmlResult xmlresult = new ru_morpher_api.GetXmlResult();
 
-                var cachefile = String.Format("morpher_cache/{0}.xml", c.name);
+                var fname = c.name;
+                if(fname.Length > 20)
+                {
+                    fname = fname.Substring(0, 20);
+                }
+
+                var cachefile = String.Format("morpher_cache/{0}.xml", fname);
 
                 if (File.Exists(cachefile))
                 {
@@ -190,12 +201,7 @@ namespace BookCreator
             var path = String.Format("{0}/content", outputdir);
 
             List<bc_chapters> items = new List<bc_chapters>();
-            if (!wordmode)
-            {
-                items = (from c in context.bc_chapters orderby c.name select c).ToList();
-            }
-            else
-            {
+
                 var files = Directory.GetFiles(inputdir, "*.docx");
 
                 foreach (var file in files)
@@ -210,7 +216,7 @@ namespace BookCreator
                     items.Add(ch);
  
                 }
-            }
+            
 
             var pageTemplate = File.ReadAllText("Content/page.html");
 
