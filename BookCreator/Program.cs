@@ -10,7 +10,7 @@ namespace BookCreator
     {
         static void Main(string[] args)
         {
-            string default_path = @"C:\Users\barkov\Documents\ГУЗ\Электронные учебники 2017\гальченко_файлы\production";  //@"D:\гранты_2015\гальченко\гальченко-production"; //@"D:\головная_боль\липски"; //@"D:\_ГРАНТЫ_2014\приходько_current\_prihodko"; //@"D:\_geodezia"; //@"d:\ebook_output";
+            string default_path = @"C:\Users\barkov\Documents\ГУЗ\Электронные учебники 2017\Бугаевская_2016\production";  //@"D:\гранты_2015\гальченко\гальченко-production"; //@"D:\головная_боль\липски"; //@"D:\_ГРАНТЫ_2014\приходько_current\_prihodko"; //@"D:\_geodezia"; //@"d:\ebook_output";
 
 
             Console.WriteLine("***** Чудо-генератор электронных учебников *****");
@@ -22,7 +22,7 @@ namespace BookCreator
 
             string indir = String.Empty;
 
-                var indir_default = @"C:\Users\barkov\Documents\ГУЗ\Электронные учебники 2017\гальченко_файлы\Гальченко_готовое"; //@"D:\гранты_2015\гальченко\гальченко-word"; //@"C:\Users\barkov\Desktop\Липски\Липски"; //@"D:\_ПАКУНОВА_УЧЕБНИК\NEWNEW\нарезка"; //@"C:\Users\barkov\Desktop\Пакунова_готовое"; //@"D:\_ГРАНТЫ_2014\приходько_current\Приходько"; //@"D:\_ГРАНТЫ_2014\Баранов\подготовленное"; //@"D:\_ГРАНТЫ_2014\Пакунова"; //@"d:\ebook_input";
+                var indir_default = @"C:\Users\barkov\Documents\ГУЗ\Электронные учебники 2017\Бугаевская_2016\Бугаевская_готовое"; //@"D:\гранты_2015\гальченко\гальченко-word"; //@"C:\Users\barkov\Desktop\Липски\Липски"; //@"D:\_ПАКУНОВА_УЧЕБНИК\NEWNEW\нарезка"; //@"C:\Users\barkov\Desktop\Пакунова_готовое"; //@"D:\_ГРАНТЫ_2014\приходько_current\Приходько"; //@"D:\_ГРАНТЫ_2014\Баранов\подготовленное"; //@"D:\_ГРАНТЫ_2014\Пакунова"; //@"d:\ebook_input";
 
                 Console.WriteLine("Откуда брать файлы? [{0}]", indir_default);
                 indir = Console.ReadLine();

@@ -24,11 +24,18 @@ namespace BookCreator
         public string name;
     }
 
+    public class Content
+    {
+        public string file;
+        public bool ismain;
+        public string name;
+    }
+
 
     public class BookBuilder
     {
 
-        Dictionary<string, string> content = new Dictionary<string, string>();
+        Dictionary<int, Content> content = new Dictionary<int, Content>();
 
         private string outputdir;
         private string inputdir;
@@ -60,11 +67,18 @@ namespace BookCreator
 
             List<bc_gloss> glossary = new List<bc_gloss>();
 
-                var glosstxt = File.ReadAllText(inputdir + "/gloss.txt");
+            var glosstxt = "";
 
-                var glossarray = glosstxt.Split('@');
+                if (File.Exists(inputdir + "/gloss.txt"))
+                {
+                    glosstxt = File.ReadAllText(inputdir + "/gloss.txt");
+                }
 
-                foreach (var g in glossarray)
+
+            //var glossarray = glosstxt.Split('@');
+            var glossarray = glosstxt.Split('\n');
+
+            foreach (var g in glossarray)
                 {
                     if (!String.IsNullOrEmpty(g))
                     {
@@ -75,7 +89,7 @@ namespace BookCreator
                         var tmptmptmp = g.Split(':');
                         //var tmptmptmp = g.Split('-');                        
 
-                        gl.name = tmptmptmp[0].Trim();
+                        gl.name = tmptmptmp[0].Trim().Replace("«", "").Replace("»", "");
 
                         var newname = char.ToUpper(gl.name[0]) + gl.name.Substring(1);
 
@@ -114,7 +128,7 @@ namespace BookCreator
                     fname = fname.Substring(0, 20);
                 }
 
-                var cachefile = String.Format("morpher_cache/{0}.xml", fname);
+                var cachefile = String.Format("morpher_cache/{0}.xml", fname.Replace("/", "").Replace("\"", ""));
 
                 if (File.Exists(cachefile))
                 {
@@ -227,6 +241,7 @@ namespace BookCreator
             var lastChapterName = new List<string>();
 
             var i = 0;
+            var iii = 0;
             foreach (var c in items)
             {
                 var filepath = String.Format("{0}/{1}.html", path, c.name);
@@ -262,13 +277,50 @@ namespace BookCreator
                 //Поиск название главы --------------------------------
                 var pureText = Regex.Replace(c.text, "<.*?>", string.Empty);
                 var lines = pureText.Split('\n');
+                var flagFlag = false;
                 foreach (var l in lines)
                 {
                     if (!lastChapterName.Contains(l.Trim()) && !String.IsNullOrWhiteSpace(l))
                     {
-                        content.Add(c.name, l.Trim());
-                        lastChapterName.Add(l.Trim());                        
-                        break;
+
+                        var mainflag = false;
+                        if (!flagFlag)
+                        {
+                            mainflag = c.name.EndsWith("01") || c.name.EndsWith("00");
+                        }
+                        else
+                        {
+                            flagFlag = false;
+                        }
+                        
+
+                        content.Add(iii, new Content { file = c.name, name = l.Trim(), ismain = mainflag });
+                        iii++;
+                        try
+                        {
+                            lastChapterName.Add(l.Trim());
+                        }
+                        catch
+                        {
+                            break;
+                        }
+
+                        if (mainflag)
+                        {
+                            if (!c.name.EndsWith("00"))
+                            {
+                                flagFlag = true;
+                                continue;
+                            }else
+                            {
+                                break;
+                            }
+
+                        }
+                        else
+                        {
+                            break;
+                        }         
                     }
                 }
                 //------------------------------------------------------
@@ -294,21 +346,24 @@ namespace BookCreator
 
             index.Append("<div style='text-align:center; font-weight: bold;'>СОДЕРЖАНИЕ</div>");
 
+            jsonindex.Append(String.Format("],[null,'{1}','content/{0}.html',null, '{2}' ", "title", "ТИТУЛЬНЫЙ ЛИСТ", ""));
+            jsonindex.Append(String.Format("],[null,'{1}','content/{0}.html',null, '{2}' ", "content", "ОГЛАВЛЕНИЕ", ""));
+
             foreach (var c in content)
             {
-                var shortname = (from str in c.Value.Split('.') select str).FirstOrDefault();
+                var shortname = (from str in c.Value.name.Split('.') select str).FirstOrDefault();
 
-                if (c.Key.EndsWith("00"))
+                if (c.Value.ismain)
                 {
-                    index.Append(String.Format("<p class='cdml_pr'><a href='{0}.html'>{1}</a></p>", c.Key, c.Value));
+                    index.Append(String.Format("<p class='cdml_pr'><a href='{0}.html'>{1}</a></p>", c.Value.file, c.Value.name.ToUpper()));
 
-                    jsonindex.Append(String.Format("],[null,'{1}','content/{0}.html',null, '{2}' ", c.Key, shortname, c.Value));
+                    jsonindex.Append(String.Format("],[null,'{1}','content/{0}.html',null, '{2}' ", c.Value.file,shortname.ToUpper(), c.Value.name));
                 }
                 else
                 {
-                    index.Append(String.Format("<p><a href='{0}.html'>{1}</a></p>", c.Key, c.Value));
+                    index.Append(String.Format("<p><a href='{0}.html'>{1}</a></p>", c.Value.file, c.Value.name.ToUpper()));
 
-                    jsonindex.Append(String.Format(", [null,'{1}','content/{0}.html',null,'{2}'],", c.Key, shortname, c.Value));
+                    jsonindex.Append(String.Format(", [null,'{1}','content/{0}.html',null,'{2}'],", c.Value.file, shortname.ToUpper(), c.Value.name));
                 }
             }
 
